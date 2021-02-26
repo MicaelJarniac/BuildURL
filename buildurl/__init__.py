@@ -71,7 +71,7 @@ class BuildURL:
     @property
     def query(self) -> str:
         """Query string."""
-        return urlencode(self._query_dict)
+        return urlencode(self._query_dict, doseq=True)
 
     @property
     def parts(self) -> tuple:
