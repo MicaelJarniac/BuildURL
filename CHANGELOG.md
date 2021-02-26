@@ -2,6 +2,13 @@
 
 <!--next-version-placeholder-->
 
+## v1.1.1 (2021-02-26)
+### Fix
+* query encoding ([`2b12860`](https://github.com/MicaelJarniac/BuildURL/commit/2b128607ed03e96238521d384fc86ba1f2a9e084))
+
+### Documentation
+* **readme:** coverage badge ([`aebb516`](https://github.com/MicaelJarniac/BuildURL/commit/aebb51623a1e276b3edc169b2f5d744d3ab0faed))
+
 ## v1.1.0 (2021-02-26)
 ### Feature
 * initial commit ([`ff71a91`](https://github.com/MicaelJarniac/BuildURL/commit/ff71a9168cf932b602402b1ee764f27ea3a74517))
