@@ -32,7 +32,7 @@ Simple URL builder
 [badge-semantic-release]: https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079?style=flat-square
 [badge-pre-commit]: https://img.shields.io/badge/pre--commit-enabled-brightgreen?style=flat-square&logo=pre-commit&logoColor=white
 [badge-semver]: https://img.shields.io/badge/SemVer-2.0.0-blue?style=flat-square&logo=semver
-<!-- [badge-coverage]: https://img.shields.io/codecov/c/gh/MicaelJarniac/BuildURL?logo=codecov&style=flat-square&token=? -->
+[badge-coverage]: https://img.shields.io/codecov/c/gh/MicaelJarniac/BuildURL?logo=codecov&style=flat-square&token=yqKa1DPwPC
 
 [actions]: https://github.com/MicaelJarniac/BuildURL/actions
 [coverage]: https://codecov.io/gh/MicaelJarniac/BuildURL
