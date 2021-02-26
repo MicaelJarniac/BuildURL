@@ -1,0 +1,21 @@
+name: Semantic Release
+
+on:
+  workflow_run:
+    workflows: ["Python package"]
+    branches: [main]
+    types:
+      - completed
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@main
+      with:
+        fetch-depth: 0
+    - name: Python Semantic Release
+      uses: relekang/python-semantic-release@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
