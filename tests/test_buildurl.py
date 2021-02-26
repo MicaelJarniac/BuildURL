@@ -1,3 +1,5 @@
+from pytest import raises
+
 from buildurl import BuildURL
 
 
@@ -16,6 +18,20 @@ def test_path():
     assert url.get == "https://example.com/test/more"
     assert str(url / "again") == "https://example.com/test/more/again"
     assert url.get == "https://example.com/test/more"
+    url /= ["paths", "added"]
+    assert url.get == "https://example.com/test/more/paths/added"
+
+    with raises(AttributeError):
+        url /= 0
+    with raises(AttributeError):
+        url /= 0.1
+    with raises(AttributeError):
+        url /= True
+
+    assert url.get == "https://example.com/test/more/paths/added"
+
+    url = BuildURL("https://example.com/why")
+    assert url.get == "https://example.com/why"
 
 
 def test_query():
@@ -29,6 +45,9 @@ def test_query():
         == "https://example.com?test=well&and=again&once=more"
     )
     assert url.get == "https://example.com?test=well&and=again"
+
+    url = BuildURL("https://example.com?testing=true")
+    assert url.get == "https://example.com?testing=true"
 
 
 def test_copy():
