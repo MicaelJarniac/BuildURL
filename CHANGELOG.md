@@ -2,6 +2,9 @@
 
 <!--next-version-placeholder-->
 
+## v1.1.2 (2021-02-26)
+
+
 ## v1.1.1 (2021-02-26)
 ### Fix
 * query encoding ([`2b12860`](https://github.com/MicaelJarniac/BuildURL/commit/2b128607ed03e96238521d384fc86ba1f2a9e084))
