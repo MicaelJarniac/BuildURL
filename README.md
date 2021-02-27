@@ -6,41 +6,112 @@
 
   | | ![Badges][label-badges] |
   |--|--|
-  | ![Build][label-build] | [![Python package][badge-actions]][actions] [![semantic-release][badge-semantic-release]][semantic-release] |
+  | ![Build][label-build] | [![Python package][badge-actions]][actions] [![semantic-release][badge-semantic-release]][semantic-release] [![PyPI][badge-pypi]][pypi] |
   | ![Tests][label-tests] | [![coverage][badge-coverage]][coverage] [![pre-commit][badge-pre-commit]][pre-commit] |
   | ![Standards][label-standards] | [![SemVer 2.0.0][badge-semver]][semver] [![Conventional Commits][badge-conventional-commits]][conventional-commits] |
   | ![Code][label-code] | [![Code style: black][badge-black]][Black] [![Imports: isort][badge-isort]][isort] [![Checked with mypy][badge-mypy]][mypy] |
+  | ![Repo][label-repo] | [![GitHub issues][badge-issues]][issues] [![GitHub stars][badge-stars]][stars] [![GitHub license][badge-license]][license] |
 </div>
 
-# BuildURL
-Simple URL builder
-
+<!-- Badges -->
 [badge-chat]: https://img.shields.io/discord/269146666441900032?label=chat&logo=discord&style=flat-square
 [chat]: https://discord.gg/6Q5XW5H
 
+<!-- Labels -->
 [label-badges]: https://img.shields.io/badge/%F0%9F%94%96-badges-purple?style=for-the-badge
 [label-build]: https://img.shields.io/badge/%F0%9F%94%A7-build-darkblue?style=flat-square
 [label-tests]: https://img.shields.io/badge/%F0%9F%A7%AA-tests-darkblue?style=flat-square
 [label-standards]: https://img.shields.io/badge/%F0%9F%93%91-standards-darkblue?style=flat-square
 [label-code]: https://img.shields.io/badge/%F0%9F%92%BB-code-darkblue?style=flat-square
+[label-repo]: https://img.shields.io/badge/%F0%9F%93%81-repo-darkblue?style=flat-square
 
-[badge-actions]: https://github.com/MicaelJarniac/BuildURL/workflows/Python%20package/badge.svg
-[badge-mypy]: https://img.shields.io/badge/mypy-checked-2A6DB2?style=flat-square
-[badge-isort]: https://img.shields.io/badge/imports-isort-%231674b1?style=flat-square&labelColor=ef8336
-[badge-black]: https://img.shields.io/badge/code%20style-black-black?style=flat-square
-[badge-conventional-commits]: https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow?style=flat-square
-[badge-semantic-release]: https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079?style=flat-square
-[badge-pre-commit]: https://img.shields.io/badge/pre--commit-enabled-brightgreen?style=flat-square&logo=pre-commit&logoColor=white
-[badge-semver]: https://img.shields.io/badge/SemVer-2.0.0-blue?style=flat-square&logo=semver
-[badge-coverage]: https://img.shields.io/codecov/c/gh/MicaelJarniac/BuildURL?logo=codecov&style=flat-square&token=yqKa1DPwPC
-
+<!-- Build -->
+[badge-actions]: https://img.shields.io/github/workflow/status/MicaelJarniac/BuildURL/Python%20package/main?style=flat-square
 [actions]: https://github.com/MicaelJarniac/BuildURL/actions
-[coverage]: https://codecov.io/gh/MicaelJarniac/BuildURL
-[Black]: https://github.com/psf/black
-[isort]: https://pycqa.github.io/isort
-[semver]: https://semver.org/spec/v2.0.0.html
-[pre-commit]: https://github.com/pre-commit/pre-commit
+[badge-semantic-release]: https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079?style=flat-square
 [semantic-release]: https://github.com/semantic-release/semantic-release
-[mypy]: http://mypy-lang.org
+[badge-pypi]: https://img.shields.io/pypi/v/buildurl?style=flat-square
+[pypi]: https://pypi.org/project/buildurl
+
+<!-- Tests -->
+[badge-coverage]: https://img.shields.io/codecov/c/gh/MicaelJarniac/BuildURL?logo=codecov&style=flat-square&token=yqKa1DPwPC
+[coverage]: https://codecov.io/gh/MicaelJarniac/BuildURL
+[badge-pre-commit]: https://img.shields.io/badge/pre--commit-enabled-brightgreen?style=flat-square&logo=pre-commit&logoColor=white
+[pre-commit]: https://github.com/pre-commit/pre-commit
+
+<!-- Standards -->
+[badge-semver]: https://img.shields.io/badge/SemVer-2.0.0-blue?style=flat-square&logo=semver
+[semver]: https://semver.org/spec/v2.0.0.html
+[badge-conventional-commits]: https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow?style=flat-square
 [conventional-commits]: https://conventionalcommits.org
-[monitoring]: https://sentry.io/organizations/tractian-p5/issues/?project=5626148
+
+<!-- Code -->
+[badge-black]: https://img.shields.io/badge/code%20style-black-black?style=flat-square
+[Black]: https://github.com/psf/black
+[badge-isort]: https://img.shields.io/badge/imports-isort-%231674b1?style=flat-square&labelColor=ef8336
+[isort]: https://pycqa.github.io/isort
+[badge-mypy]: https://img.shields.io/badge/mypy-checked-2A6DB2?style=flat-square
+[mypy]: http://mypy-lang.org
+
+<!-- Repo -->
+[badge-issues]: https://img.shields.io/github/issues/MicaelJarniac/BuildURL?style=flat-square
+[issues]: https://github.com/MicaelJarniac/BuildURL/issues
+[badge-stars]: https://img.shields.io/github/stars/MicaelJarniac/BuildURL?style=flat-square
+[stars]: https://github.com/MicaelJarniac/BuildURL/stargazers
+[badge-license]: https://img.shields.io/github/license/MicaelJarniac/BuildURL?style=flat-square
+[license]: https://github.com/MicaelJarniac/BuildURL/blob/main/LICENSE
+<!---->
+
+# BuildURL
+Simple URL builder
+
+## Installation
+
+Use the package manager [pip](https://pip.pypa.io/en/stable/) to install BuildURL.
+
+```bash
+pip install buildurl
+```
+
+## Usage
+
+
+```python
+from buildurl import BuildURL
+
+# Use the `/` operator to add a string as a path to the end of the URL, like so:
+url = BuildURL("https://pypi.org")
+url /= "project"
+url /= "buildurl"
+print(url.get)  # https://pypi.org/project/buildurl
+
+# Or, using a list:
+url = BuildURL("https://pypi.org")
+url /= ["project", "buildurl"]
+print(url.get)  # https://pypi.org/project/buildurl
+
+# Use the `+` operator to add a dict as a query:
+url = BuildURL("https://example.com")
+url += {"testing": "true"}
+url += {"fruit": "apple"}
+print(url.get)  # https://example.com?testing=true&fruit=apple
+
+# Those operations can also be done without modifying the original URL:
+url = BuildURL("https://python.org")
+print(url.get)  # https://python.org
+print((url / "doc").get)  # https://python.org/doc
+print(url.get)  # https://python.org
+
+# To get the final URL as a string:
+url = BuildURL("https://example.com")
+url.get
+str(url)
+```
+
+## Contributing
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+
+Please make sure to update tests as appropriate.
+
+## License
+[MIT](https://choosealicense.com/licenses/mit/)
