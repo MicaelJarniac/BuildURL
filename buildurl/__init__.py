@@ -1,12 +1,18 @@
 from copy import deepcopy
-from typing import Any, Dict, Union
-from urllib.parse import parse_qs, urlencode, urlparse, urlunparse
+from typing import Any, Dict, List, Optional, Tuple, Union
+from urllib.parse import parse_qs, urlencode, urlsplit, urlunsplit
+
+# Type aliases
+PathList = List[str]
+Path = Union[str, PathList]
+QueryDict = Dict[str, Any]
+Query = Union[str, QueryDict]
 
 
 class BuildURL:
     """Tool to simplify the creation of URLs with query parameters"""
 
-    def __init__(self, base: str):
+    def __init__(self, base: str = ""):
         """Start the creation of an URL.
 
         Args:
@@ -16,39 +22,30 @@ class BuildURL:
 
         # self.base = base
 
-        purl = urlparse(base)
+        purl = urlsplit(base)
 
         # scheme://netloc/path;params?query#fragment
+        # There can be one `params` per `path` element, so it's included as
+        # part of `path`, and not isolated
         self.scheme: str = purl.scheme
         self.netloc: str = purl.netloc
-        self._path_list: list = list()
-        self.params: str = purl.params
-        self._query_dict: dict = dict()
+        self.path_list: PathList = list()
+        self.query_dict: QueryDict = dict()
         self.fragment: str = purl.fragment
 
         path_str: str = purl.path
-        query_str: str = purl.query
-
         if path_str:
-            self.add_path(path_str.split("/"))
+            self.path = path_str
+
+        query_str: str = purl.query
         if query_str:
-            self.add_query(parse_qs(query_str))
+            self.query = query_str
 
     def copy(self) -> "BuildURL":
         """Create a deep copy of itself."""
         return deepcopy(self)
 
-    def add_query(self, query: Dict[str, Any]) -> None:
-        """Add a query argument.
-
-        Args:
-            query:
-                The query keys and arguments to add.
-        """
-
-        self._query_dict.update(query)
-
-    def add_path(self, path: Union[str, list]) -> None:
+    def add_path(self, path: Path) -> None:
         """Add to the path.
 
         Args:
@@ -56,31 +53,67 @@ class BuildURL:
                 The path to add.
         """
 
+        path_list = list()
         if isinstance(path, str):
-            self._path_list.append(path)
+            path_list = path.split("/")
         elif isinstance(path, list):
-            self._path_list.extend(path)
+            path_list = path
         else:
             raise AttributeError
+
+        path_list = [p for p in path_list if p]  # Remove empty strings
+
+        self.path_list.extend(path_list)
+
+    def add_query(self, query: Query) -> None:
+        """Add a query argument.
+
+        Args:
+            query:
+                The query keys and arguments to add.
+        """
+
+        query_dict = dict()
+        if isinstance(query, str):
+            query_dict = parse_qs(query)
+        elif isinstance(query, dict):
+            query_dict = query
+        else:
+            raise AttributeError
+
+        self.query_dict.update(query_dict)
 
     @property
     def path(self) -> str:
         """Path string."""
-        return "/".join(self._path_list)
+        return "/".join(self.path_list)
+
+    @path.setter
+    def path(self, path: Optional[Path]):
+        """Replace current path."""
+        self.path_list = list()
+        if path is not None:
+            self.add_path(path)
 
     @property
     def query(self) -> str:
         """Query string."""
-        return urlencode(self._query_dict, doseq=True)
+        return urlencode(self.query_dict, doseq=True)
+
+    @query.setter
+    def query(self, query: Optional[Query]):
+        """Replace current query."""
+        self.query_dict = dict()
+        if query is not None:
+            self.add_query(query)
 
     @property
-    def parts(self) -> tuple:
+    def parts(self) -> Tuple[str, ...]:
         """Tuple of necessary parts to construct the URL."""
         return (
             self.scheme,
             self.netloc,
             self.path,
-            self.params,
             self.query,
             self.fragment,
         )
@@ -88,9 +121,9 @@ class BuildURL:
     @property
     def get(self) -> str:
         """Get the generated URL."""
-        return urlunparse(self.parts)
+        return urlunsplit(self.parts)
 
-    def __itruediv__(self, path: str) -> "BuildURL":
+    def __itruediv__(self, path: Path) -> "BuildURL":
         """Add new path part to the URL inplace.
 
         Args:
@@ -104,7 +137,7 @@ class BuildURL:
         self.add_path(path)
         return self
 
-    def __truediv__(self, path: str) -> "BuildURL":
+    def __truediv__(self, path: Path) -> "BuildURL":
         """Generate new URL with added path.
 
         Args:
@@ -119,7 +152,7 @@ class BuildURL:
         out /= path
         return out
 
-    def __iadd__(self, query: Dict[str, Any]) -> "BuildURL":
+    def __iadd__(self, query: Query) -> "BuildURL":
         """Add query arguments inplace.
 
         Args:
@@ -133,7 +166,7 @@ class BuildURL:
         self.add_query(query)
         return self
 
-    def __add__(self, query: Dict[str, Any]) -> "BuildURL":
+    def __add__(self, query: Query) -> "BuildURL":
         """Generate new URL with added query.
 
         Args:
