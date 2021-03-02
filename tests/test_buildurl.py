@@ -10,6 +10,27 @@ def test_base():
     assert len(url) == 19
 
 
+def test_split():
+    url = BuildURL("scheme://netloc/path;params?query=value#fragment")
+    assert url.get == "scheme://netloc/path;params?query=value#fragment"
+    assert url.scheme == "scheme"
+    assert url.netloc == "netloc"
+    assert url.path == "path;params"
+    assert url.query == "query=value"
+    assert url.fragment == "fragment"
+
+
+def test_fresh():
+    url = BuildURL()
+    assert url.get == ""
+    url.scheme = "scheme"
+    url.netloc = "netloc"
+    url.path = "path;params"
+    url.query = "query=value"
+    url.fragment = "fragment"
+    assert url.get == "scheme://netloc/path;params?query=value#fragment"
+
+
 def test_path():
     url = BuildURL("https://example.com")
     url /= "test"
@@ -20,6 +41,7 @@ def test_path():
     assert url.get == "https://example.com/test/more"
     url /= ["paths", "added"]
     assert url.get == "https://example.com/test/more/paths/added"
+    assert url.path == "test/more/paths/added"
 
     with raises(AttributeError):
         url /= 0
@@ -32,6 +54,14 @@ def test_path():
 
     url = BuildURL("https://example.com/why")
     assert url.get == "https://example.com/why"
+    url.path = ["still", "testing"]
+    assert url.get == "https://example.com/still/testing"
+    url.path = "/once/more/"
+    assert url.get == "https://example.com/once/more"
+    url.path_list = ["again", "and", "again"]
+    assert url.get == "https://example.com/again/and/again"
+    url.path = None
+    assert url.get == "https://example.com"
 
 
 def test_query():
@@ -48,6 +78,14 @@ def test_query():
 
     url = BuildURL("https://example.com?testing=true")
     assert url.get == "https://example.com?testing=true"
+    url.query = {"still": "testing"}
+    assert url.get == "https://example.com?still=testing"
+    url.query = "once=more"
+    assert url.get == "https://example.com?once=more"
+    url.query_dict = {"again": "and-again"}
+    assert url.get == "https://example.com?again=and-again"
+    url.query = None
+    assert url.get == "https://example.com"
 
 
 def test_copy():
