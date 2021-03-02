@@ -2,6 +2,18 @@
 
 <!--next-version-placeholder-->
 
+## v2.0.0 (2021-03-02)
+### Feature
+* easier manipulation of path and query ([`b520771`](https://github.com/MicaelJarniac/BuildURL/commit/b52077148eac94c668494ba08cfc41b8e2e91cfd))
+
+### Breaking
+* Renamed `_path_list` and `_query_dict`, and removed `params`.  ([`b520771`](https://github.com/MicaelJarniac/BuildURL/commit/b52077148eac94c668494ba08cfc41b8e2e91cfd))
+
+### Documentation
+* **contributing:** All Contributors info ([`5d2a84e`](https://github.com/MicaelJarniac/BuildURL/commit/5d2a84ebefb6324428a2df30200ef65aef0d7b9e))
+* **readme:** better install & contrib. instruct. ([`05ca34b`](https://github.com/MicaelJarniac/BuildURL/commit/05ca34b0c6e8f395b41788c6ef270317aa80abf7))
+* **readme:** basic installation and usage, badges ([`3718cbd`](https://github.com/MicaelJarniac/BuildURL/commit/3718cbdab9b414667a4252582086df4d6dace662))
+
 ## v1.1.4 (2021-02-26)
 
 
