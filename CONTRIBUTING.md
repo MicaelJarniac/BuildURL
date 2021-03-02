@@ -63,6 +63,8 @@ We also recommend that you read [How to Contribute to Open Source](https://opens
       - [Conventional Commits][conventionalcommits]
     - Versioning
       - [Semantic Versioning][semver]
+    - Contributing
+      - [All Contributors][allcontributors]
   - Editor
     - [EditorConfig][editorconfig]
   - Guidelines
@@ -105,6 +107,7 @@ We also recommend that you read [How to Contribute to Open Source](https://opens
 [setuptools]: https://github.com/pypa/setuptools
 [conventionalcommits]: https://www.conventionalcommits.org
 [semver]: https://semver.org
+[allcontributors]: https://github.com/all-contributors/all-contributors
 [no-editor-config-gitignore]: https://blog.martinhujer.cz/dont-put-idea-vscode-directories-to-projects-gitignore
 [editorconfig]: https://editorconfig.org
 [angular-contributing]: https://github.com/angular/angular/blob/master/CONTRIBUTING.md#commit
@@ -386,3 +389,7 @@ pip freeze > requirements-current.txt
 That will create a new file, `requirements-current.txt`, with them.
 
 You can then compare it with the current requirements listed in the other files, and update them as needed.
+
+## Add yourself as a contributor
+
+To add yourself as a contributor, follow the [bot usage instructions](https://allcontributors.org/docs/en/bot/usage).
