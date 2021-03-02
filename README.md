@@ -67,10 +67,17 @@ Simple URL builder
 
 ## Installation
 
-Use the package manager [pip](https://pip.pypa.io/en/stable/) to install BuildURL.
+### pip
+[*buildurl*](https://pypi.org/project/buildurl) is available on [pip](https://pip.pypa.io/en/stable/):
 
 ```bash
 pip install buildurl
+```
+
+### GitHub
+You can also install the latest version of the code directly from GitHub:
+```bash
+pip install git+git://github.com/MicaelJarniac/BuildURL
 ```
 
 ## Usage
@@ -113,5 +120,9 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 
 Please make sure to update tests as appropriate.
 
+More details can be found in [CONTRIBUTING](CONTRIBUTING.md).
+
+## Contributors ✨
+
 ## License
-[MIT](https://choosealicense.com/licenses/mit/)
+[MIT](LICENSE)
