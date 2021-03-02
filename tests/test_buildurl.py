@@ -76,6 +76,15 @@ def test_query():
     )
     assert url.get == "https://example.com?test=well&and=again"
 
+    with raises(AttributeError):
+        url += 0
+    with raises(AttributeError):
+        url += 0.1
+    with raises(AttributeError):
+        url += True
+
+    assert url.get == "https://example.com?test=well&and=again"
+
     url = BuildURL("https://example.com?testing=true")
     assert url.get == "https://example.com?testing=true"
     url.query = {"still": "testing"}
