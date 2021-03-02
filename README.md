@@ -1,4 +1,7 @@
 <div align="center">
+<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
+<!-- ALL-CONTRIBUTORS-BADGE:END -->
 
   [![Discord][badge-chat]][chat]
   <br>
@@ -125,4 +128,17 @@ More details can be found in [CONTRIBUTING](CONTRIBUTING.md).
 ## Contributors ✨
 
 ## License
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<table>
+  <tr>
+    <td align="center"><a href="https://github.com/MicaelJarniac"><img src="https://avatars.githubusercontent.com/u/19514231?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Micael Jarniac</b></sub></a><br /><a href="https://github.com/MicaelJarniac/BuildURL/commits?author=MicaelJarniac" title="Code">💻</a> <a href="https://github.com/MicaelJarniac/BuildURL/commits?author=MicaelJarniac" title="Documentation">📖</a> <a href="#example-MicaelJarniac" title="Examples">💡</a> <a href="#ideas-MicaelJarniac" title="Ideas, Planning, & Feedback">🤔</a> <a href="#maintenance-MicaelJarniac" title="Maintenance">🚧</a> <a href="#platform-MicaelJarniac" title="Packaging/porting to new platform">📦</a> <a href="#projectManagement-MicaelJarniac" title="Project Management">📆</a> <a href="https://github.com/MicaelJarniac/BuildURL/commits?author=MicaelJarniac" title="Tests">⚠️</a></td>
+  </tr>
+</table>
+
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
+
+<!-- ALL-CONTRIBUTORS-LIST:END -->
 [MIT](LICENSE)
