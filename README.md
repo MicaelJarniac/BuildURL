@@ -1,7 +1,4 @@
 <div align="center">
-<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
-<!-- ALL-CONTRIBUTORS-BADGE:END -->
 
   [![Discord][badge-chat]][chat]
   <br>
@@ -13,7 +10,7 @@
   | ![Tests][label-tests] | [![coverage][badge-coverage]][coverage] [![pre-commit][badge-pre-commit]][pre-commit] |
   | ![Standards][label-standards] | [![SemVer 2.0.0][badge-semver]][semver] [![Conventional Commits][badge-conventional-commits]][conventional-commits] |
   | ![Code][label-code] | [![Code style: black][badge-black]][Black] [![Imports: isort][badge-isort]][isort] [![Checked with mypy][badge-mypy]][mypy] |
-  | ![Repo][label-repo] | [![GitHub issues][badge-issues]][issues] [![GitHub stars][badge-stars]][stars] [![GitHub license][badge-license]][license] |
+  | ![Repo][label-repo] | [![GitHub issues][badge-issues]][issues] [![GitHub stars][badge-stars]][stars] [![GitHub license][badge-license]][license] [![All Contributors][badge-all-contributors]][contributors] |
 </div>
 
 <!-- Badges -->
@@ -63,6 +60,10 @@
 [stars]: https://github.com/MicaelJarniac/BuildURL/stargazers
 [badge-license]: https://img.shields.io/github/license/MicaelJarniac/BuildURL?style=flat-square
 [license]: https://github.com/MicaelJarniac/BuildURL/blob/main/LICENSE
+<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+[badge-all-contributors]: https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square
+<!-- ALL-CONTRIBUTORS-BADGE:END -->
+[contributors]: #Contributors-✨
 <!---->
 
 # BuildURL
@@ -126,8 +127,6 @@ Please make sure to update tests as appropriate.
 More details can be found in [CONTRIBUTING](CONTRIBUTING.md).
 
 ## Contributors ✨
-
-## License
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
 <!-- markdownlint-disable -->
@@ -141,4 +140,6 @@ More details can be found in [CONTRIBUTING](CONTRIBUTING.md).
 <!-- prettier-ignore-end -->
 
 <!-- ALL-CONTRIBUTORS-LIST:END -->
+
+## License
 [MIT](LICENSE)
