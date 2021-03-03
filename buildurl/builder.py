@@ -10,18 +10,18 @@ Query = Union[str, QueryDict]
 
 
 class BuildURL:
-    """Tool to simplify the creation of URLs with query parameters."""
+    """Tool to simplify the creation of URLs with query parameters.
+
+    Args:
+        base:
+            The base URL to build upon.
+
+    Examples:
+        >>> from buildurl import BuildURL
+        >>> url = BuildURL("https://pypi.org")
+    """
 
     def __init__(self, base: str = ""):
-        """Start the creation of an URL.
-
-        Args:
-            base:
-                The base URL to build upon.
-        """
-
-        # self.base = base
-
         purl = urlsplit(base)
 
         # scheme://netloc/path;params?query#fragment
@@ -42,7 +42,17 @@ class BuildURL:
             self.query = query_str
 
     def copy(self) -> "BuildURL":
-        """Create a deep copy of itself."""
+        """Create a deep copy of itself.
+
+        Examples:
+            >>> url = BuildURL("https://example.com")
+            >>> url_copy = url.copy()
+            >>> url /= "test"
+            >>> print(url.get)
+            https://example.com/test
+            >>> print(url_copy.get)
+            https://example.com
+        """
         return deepcopy(self)
 
     def add_path(self, path: Path) -> None:
@@ -51,6 +61,20 @@ class BuildURL:
         Args:
             path:
                 The path to add.
+                Can be a string containing a single path, multiple paths
+                separated by `/`, or a list of single path strings.
+
+        Examples:
+            >>> url = BuildURL("https://example.com")
+            >>> url.add_path("test")
+            >>> print(url.get)
+            https://example.com/test
+            >>> url.add_path(["more", "paths"])
+            >>> print(url.get)
+            https://example.com/test/more/paths
+            >>> url.add_path("/again/and/again/")
+            >>> print(url.get)
+            https://example.com/test/more/paths/again/and/again
         """
 
         path_list = list()
@@ -70,7 +94,19 @@ class BuildURL:
 
         Args:
             query:
-                The query keys and arguments to add.
+                The query keys and values to add.
+                Can be a string containing the keys and values, like
+                `"key1=value1&key2=value2"`, or a dict, like
+                `{"key1": "value1", "key2": "value2"}`.
+
+        Examples:
+            >>> url = BuildURL("https://example.com")
+            >>> url.add_query({"key": "value"})
+            >>> print(url.get)
+            https://example.com?key=value
+            >>> url.add_query("another=query&more=stuff")
+            >>> print(url.get)
+            https://example.com?key=value&another=query&more=stuff
         """
 
         query_dict = dict()
@@ -126,12 +162,26 @@ class BuildURL:
     def __itruediv__(self, path: Path) -> "BuildURL":
         """Add new path part to the URL inplace.
 
+        Essentially a shortcut to ``add_path``.
+
         Args:
             path:
                 New path to add.
 
         Returns:
             Reference to self.
+
+        Examples:
+            >>> url = BuildURL("https://example.com")
+            >>> url /= "test"
+            >>> print(url.get)
+            https://example.com/test
+            >>> url /= ["more", "paths"]
+            >>> print(url.get)
+            https://example.com/test/more/paths
+            >>> url /= "/again/and/again/"
+            >>> print(url.get)
+            https://example.com/test/more/paths/again/and/again
         """
 
         self.add_path(path)
@@ -140,12 +190,22 @@ class BuildURL:
     def __truediv__(self, path: Path) -> "BuildURL":
         """Generate new URL with added path.
 
+        Equivalent to first copying the URL, then using ``add_path``.
+
         Args:
             path:
                 New path to add.
 
         Returns:
             New BuildURL instance.
+
+        Examples:
+            >>> url = BuildURL("https://example.com")
+            >>> new_url = url / "testing"
+            >>> print(url.get)
+            https://example.com
+            >>> print(new_url.get)
+            https://example.com/testing
         """
 
         out = self.copy()
@@ -155,12 +215,23 @@ class BuildURL:
     def __iadd__(self, query: Query) -> "BuildURL":
         """Add query arguments inplace.
 
+        Essentially a shortcut to ``add_query``.
+
         Args:
             query:
                 The query key and value to add.
 
         Returns:
             Reference to self.
+
+        Examples:
+            >>> url = BuildURL("https://example.com")
+            >>> url += {"key": "value"}
+            >>> print(url.get)
+            https://example.com?key=value
+            >>> url += "another=query&more=stuff"
+            >>> print(url.get)
+            https://example.com?key=value&another=query&more=stuff
         """
 
         self.add_query(query)
@@ -169,12 +240,22 @@ class BuildURL:
     def __add__(self, query: Query) -> "BuildURL":
         """Generate new URL with added query.
 
+        Equivalent to first copying the URL, then using ``add_query``.
+
         Args:
             query:
                 The query key and value to add.
 
         Returns:
             New BuildURL instance.
+
+        Examples:
+            >>> url = BuildURL("https://example.com")
+            >>> new_url = url + {"test": "it"}
+            >>> print(url.get)
+            https://example.com
+            >>> print(new_url.get)
+            https://example.com?test=it
         """
 
         out = self.copy()
@@ -186,6 +267,11 @@ class BuildURL:
 
         Returns:
             String representation of self.
+
+        Examples:
+            >>> url = BuildURL("https://example.com/test?now=true")
+            >>> print(repr(url))
+            BuildURL(base='https://example.com/test?now=true')
         """
 
         return f"{self.__class__.__name__}(base='{self.get}')"
@@ -197,6 +283,14 @@ class BuildURL:
 
         Returns:
             Generated URL.
+
+        Examples:
+            >>> url = BuildURL("https://example.com")
+            >>> url /= "test"
+            >>> print(str(url))
+            https://example.com/test
+            >>> print(url)
+            https://example.com/test
         """
 
         return self.get
