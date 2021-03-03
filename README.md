@@ -6,7 +6,7 @@
 
   | | ![Badges][label-badges] |
   |--|--|
-  | ![Build][label-build] | [![Python package][badge-actions]][actions] [![semantic-release][badge-semantic-release]][semantic-release] [![PyPI][badge-pypi]][pypi] |
+  | ![Build][label-build] | [![Python package][badge-actions]][actions] [![semantic-release][badge-semantic-release]][semantic-release] [![PyPI][badge-pypi]][pypi] [![Read the Docs][badge-docs]][docs] |
   | ![Tests][label-tests] | [![coverage][badge-coverage]][coverage] [![pre-commit][badge-pre-commit]][pre-commit] |
   | ![Standards][label-standards] | [![SemVer 2.0.0][badge-semver]][semver] [![Conventional Commits][badge-conventional-commits]][conventional-commits] |
   | ![Code][label-code] | [![Code style: black][badge-black]][Black] [![Imports: isort][badge-isort]][isort] [![Checked with mypy][badge-mypy]][mypy] |
@@ -32,6 +32,8 @@
 [semantic-release]: https://github.com/semantic-release/semantic-release
 [badge-pypi]: https://img.shields.io/pypi/v/buildurl?style=flat-square
 [pypi]: https://pypi.org/project/buildurl
+[badge-docs]: https://img.shields.io/readthedocs/buildurl?style=flat-square
+[docs]: https://buildurl.readthedocs.io
 
 <!-- Tests -->
 [badge-coverage]: https://img.shields.io/codecov/c/gh/MicaelJarniac/BuildURL?logo=codecov&style=flat-square&token=yqKa1DPwPC
@@ -69,10 +71,12 @@
 # BuildURL
 Simple URL builder
 
+[Read the Docs][docs]
+
 ## Installation
 
 ### pip
-[*buildurl*](https://pypi.org/project/buildurl) is available on [pip](https://pip.pypa.io/en/stable/):
+[*buildurl*][pypi] is available on [pip](https://pip.pypa.io/en/stable/):
 
 ```bash
 pip install buildurl
@@ -85,7 +89,7 @@ pip install git+git://github.com/MicaelJarniac/BuildURL
 ```
 
 ## Usage
-
+For more examples, see the [full documentation][docs].
 
 ```python
 from buildurl import BuildURL
