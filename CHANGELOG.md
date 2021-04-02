@@ -2,6 +2,21 @@
 
 <!--next-version-placeholder-->
 
+## v3.0.0 (2021-04-02)
+### Feature
+* support trailing slash ([`d34ac1d`](https://github.com/MicaelJarniac/BuildURL/commit/d34ac1d5d4104c5026dbb7501c9c0091cf81799a))
+
+### Breaking
+* Removed public `path_list` attribute, should now be accessed through `path`. BREAKING CHANGE: Trailing slash no longer removed.  ([`d34ac1d`](https://github.com/MicaelJarniac/BuildURL/commit/d34ac1d5d4104c5026dbb7501c9c0091cf81799a))
+
+### Documentation
+* **readme:** reference to external docs ([`4058e07`](https://github.com/MicaelJarniac/BuildURL/commit/4058e076d2bb9001057053d5e65c96356276eecc))
+* setup Sphinx ([`16196ed`](https://github.com/MicaelJarniac/BuildURL/commit/16196ed05a918f331d392472517e3396ca86d7d1))
+* add examples ([`65d800f`](https://github.com/MicaelJarniac/BuildURL/commit/65d800f743b2316cd8ec7a9d9de27581615a2673))
+* **readme:** fix all-contributors badge and table ([`d039306`](https://github.com/MicaelJarniac/BuildURL/commit/d039306936f6a0bc011b108396c78c0672469709))
+* create .all-contributorsrc [skip ci] ([`915cd47`](https://github.com/MicaelJarniac/BuildURL/commit/915cd472ecbdd69a697c77d9666ac123c050ce99))
+* update README.md [skip ci] ([`2ab9c55`](https://github.com/MicaelJarniac/BuildURL/commit/2ab9c55d999a8bf1dfeb285c54ee524c746ff9b8))
+
 ## v2.0.0 (2021-03-02)
 ### Feature
 * easier manipulation of path and query ([`b520771`](https://github.com/MicaelJarniac/BuildURL/commit/b52077148eac94c668494ba08cfc41b8e2e91cfd))
