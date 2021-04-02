@@ -57,11 +57,23 @@ def test_path():
     url.path = ["still", "testing"]
     assert url.get == "https://example.com/still/testing"
     url.path = "/once/more/"
-    assert url.get == "https://example.com/once/more"
-    url.path_list = ["again", "and", "again"]
+    assert url.get == "https://example.com/once/more/"
+    url.path = ["again", "and", "again"]
     assert url.get == "https://example.com/again/and/again"
     url.path = None
     assert url.get == "https://example.com"
+
+    url = BuildURL("https://example.com/")
+    assert url.get == "https://example.com/"
+    url /= "path"
+    assert url.get == "https://example.com/path"
+    url /= "another//path"
+    assert url.get == "https://example.com/path/another/path"
+    url /= "/again/"
+    assert url.get == "https://example.com/path/another/path/again/"
+
+    url = BuildURL("https://example.com/folder/")
+    assert url.get == "https://example.com/folder/"
 
 
 def test_query():
