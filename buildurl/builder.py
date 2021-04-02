@@ -29,9 +29,11 @@ class BuildURL:
         # part of `path`, and not isolated
         self.scheme: str = purl.scheme
         self.netloc: str = purl.netloc
-        self.path_list: PathList = list()
+        self._path_list: PathList = list()
         self.query_dict: QueryDict = dict()
         self.fragment: str = purl.fragment
+
+        self.trailing_slash: bool = False
 
         path_str: str = purl.path
         if path_str:
@@ -74,7 +76,7 @@ class BuildURL:
             https://example.com/test/more/paths
             >>> url.add_path("/again/and/again/")
             >>> print(url.get)
-            https://example.com/test/more/paths/again/and/again
+            https://example.com/test/more/paths/again/and/again/
         """
 
         path_list = list()
@@ -85,9 +87,11 @@ class BuildURL:
         else:
             raise AttributeError
 
+        if len(path_list):
+            self.trailing_slash = path_list[-1] == ""
         path_list = [p for p in path_list if p]  # Remove empty strings
 
-        self.path_list.extend(path_list)
+        self._path_list.extend(path_list)
 
     def add_query(self, query: Query) -> None:
         """Add a query argument.
@@ -122,12 +126,15 @@ class BuildURL:
     @property
     def path(self) -> str:
         """Path string."""
-        return "/".join(self.path_list)
+        path = "/".join(self._path_list)
+        if self.trailing_slash:
+            path += "/"
+        return path
 
     @path.setter
     def path(self, path: Optional[Path]):
         """Replace current path."""
-        self.path_list = list()
+        self._path_list = list()
         if path is not None:
             self.add_path(path)
 
@@ -181,7 +188,7 @@ class BuildURL:
             https://example.com/test/more/paths
             >>> url /= "/again/and/again/"
             >>> print(url.get)
-            https://example.com/test/more/paths/again/and/again
+            https://example.com/test/more/paths/again/and/again/
         """
 
         self.add_path(path)
