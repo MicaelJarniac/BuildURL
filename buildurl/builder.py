@@ -15,10 +15,19 @@ class BuildURL:
     Args:
         base:
             The base URL to build upon.
+        force_trailing_slash:
+            Whether or not to forcefully include a trailing slash at the end
+            of `path`, `False` by default.
 
     Examples:
         >>> from buildurl import BuildURL
         >>> url = BuildURL("https://pypi.org")
+        >>> print(url.get)
+        https://pypi.org
+        >>> url = BuildURL("https://example.com/test",
+        ... force_trailing_slash=True)
+        >>> print(url.get)
+        https://example.com/test/
     """
 
     def __init__(self, base: str = "", force_trailing_slash: bool = False):
@@ -59,6 +68,22 @@ class BuildURL:
         return deepcopy(self)
 
     def set_force_trailing_slash(self, enabled: bool = True) -> "BuildURL":
+        """Sets the `force_trailing_slash` attribute
+
+        Args:
+            enabled:
+                The new value for `force_trailing_slash`, default `True`.
+
+        Returns:
+            Reference to self.
+
+        Examples:
+            >>> url = BuildURL("https://example.com")
+            >>> url.set_force_trailing_slash().add_path("test")
+            BuildURL(base='https://example.com/test/', force_trailing_slash=True)
+            >>> url.set_force_trailing_slash(False)
+            BuildURL(base='https://example.com/test', force_trailing_slash=False)
+        """
         self.force_trailing_slash = enabled
         return self
 
@@ -66,22 +91,29 @@ class BuildURL:
         """Add to the path.
 
         Args:
-            path:
-                The path to add.
+            *args:
+                The paths to add.
                 Can be a string containing a single path, multiple paths
                 separated by `/`, or a list of single path strings.
+
+        Returns:
+            Reference to self.
 
         Examples:
             >>> url = BuildURL("https://example.com")
             >>> url.add_path("test")
+            BuildURL(...)
             >>> print(url.get)
             https://example.com/test
-            >>> url.add_path(["more", "paths"])
-            >>> print(url.get)
-            https://example.com/test/more/paths
-            >>> url.add_path("/again/and/again/")
+            >>> url.add_path(["more", "paths"]).add_path("/again/and/again/")
+            BuildURL(...)
             >>> print(url.get)
             https://example.com/test/more/paths/again/and/again/
+            >>> url = BuildURL("https://example.com")
+            >>> url.add_path("never", "stopping", "to/play", ["with", "paths"])
+            BuildURL(...)
+            >>> print(url.get)
+            https://example.com/never/stopping/to/play/with/paths
         """
 
         path_list = list()
@@ -108,20 +140,31 @@ class BuildURL:
         """Add a query argument.
 
         Args:
-            query:
+            *args:
                 The query keys and values to add.
                 Can be a string containing the keys and values, like
                 `"key1=value1&key2=value2"`, or a dict, like
                 `{"key1": "value1", "key2": "value2"}`.
+            **kwargs:
+                Keyword arguments corresponding to key-value pairs.
+
+        Returns:
+            Reference to self.
 
         Examples:
             >>> url = BuildURL("https://example.com")
             >>> url.add_query({"key": "value"})
+            BuildURL(...)
             >>> print(url.get)
             https://example.com?key=value
             >>> url.add_query("another=query&more=stuff")
+            BuildURL(...)
             >>> print(url.get)
             https://example.com?key=value&another=query&more=stuff
+            >>> url.add_query(a="b").add_query("c=d", "e=f")
+            BuildURL(...)
+            >>> print(url.get)
+            https://example.com?key=value&another=query&more=stuff&a=b&c=d&e=f
         """
 
         query_dict = dict()
@@ -295,10 +338,10 @@ class BuildURL:
         Examples:
             >>> url = BuildURL("https://example.com/test?now=true")
             >>> print(repr(url))
-            BuildURL(base='https://example.com/test?now=true')
+            BuildURL(base='https://example.com/test?now=true', force_trailing_slash=False)
         """
 
-        return f"{self.__class__.__name__}(base='{self.get}')"
+        return f"{self.__class__.__name__}(base='{self.get}', force_trailing_slash={self.force_trailing_slash})"
 
     def __str__(self) -> str:
         """Shortcut for getting the URL.

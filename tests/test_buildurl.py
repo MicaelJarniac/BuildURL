@@ -153,11 +153,24 @@ def test_copy():
 
 def test_repr():
     url = BuildURL("https://example.com")
-    assert repr(url) == "BuildURL(base='https://example.com')"
+    assert (
+        repr(url) == "BuildURL(base='https://example.com', force_trailing_slash=False)"
+    )
     url /= "repr"
-    assert repr(url) == "BuildURL(base='https://example.com/repr')"
+    assert (
+        repr(url)
+        == "BuildURL(base='https://example.com/repr', force_trailing_slash=False)"
+    )
     url += {"testing": "it"}
-    assert repr(url) == "BuildURL(base='https://example.com/repr?testing=it')"
+    assert (
+        repr(url)
+        == "BuildURL(base='https://example.com/repr?testing=it', force_trailing_slash=False)"
+    )
+
+    url = BuildURL("https://example.com", force_trailing_slash=True)
+    assert (
+        repr(url) == "BuildURL(base='https://example.com/', force_trailing_slash=True)"
+    )
 
 
 def test_chaining():
