@@ -125,3 +125,11 @@ def test_repr():
     assert repr(url) == "BuildURL(base='https://example.com/repr')"
     url += {"testing": "it"}
     assert repr(url) == "BuildURL(base='https://example.com/repr?testing=it')"
+
+
+def test_chaining():
+    url = BuildURL("https://example.com")
+    url.add_path("one").add_path("two")
+    assert url.get == "https://example.com/one/two"
+    url.add_query({"test": "more"}).add_path("three").add_query("testing=alot")
+    assert url.get == "https://example.com/one/two/three?test=more&testing=alot"

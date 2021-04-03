@@ -57,7 +57,7 @@ class BuildURL:
         """
         return deepcopy(self)
 
-    def add_path(self, path: Path) -> None:
+    def add_path(self, path: Path) -> "BuildURL":
         """Add to the path.
 
         Args:
@@ -93,7 +93,9 @@ class BuildURL:
 
         self._path_list.extend(path_list)
 
-    def add_query(self, query: Query) -> None:
+        return self
+
+    def add_query(self, query: Query) -> "BuildURL":
         """Add a query argument.
 
         Args:
@@ -122,6 +124,8 @@ class BuildURL:
             raise AttributeError
 
         self.query_dict.update(query_dict)
+
+        return self
 
     @property
     def path(self) -> str:
