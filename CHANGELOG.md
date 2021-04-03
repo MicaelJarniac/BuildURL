@@ -2,6 +2,18 @@
 
 <!--next-version-placeholder-->
 
+## v4.0.0 (2021-04-03)
+### Feature
+* option to force trailing slash ([`299f3b3`](https://github.com/MicaelJarniac/BuildURL/commit/299f3b39ad7a75c544bae26b14013a70a0d5e1cd))
+* use *args and **kwargs on `add_path`/`query` ([`63072db`](https://github.com/MicaelJarniac/BuildURL/commit/63072dbea27c7ff216f7e895b1d41a227e75f61b))
+* allow chaining with `add_path`/`add_query` ([`ae6c9ac`](https://github.com/MicaelJarniac/BuildURL/commit/ae6c9ac7e5cc0db5336c30cb68697886695ae5b9))
+
+### Breaking
+* Modified parameter names for `add_path` and `add_query`  ([`63072db`](https://github.com/MicaelJarniac/BuildURL/commit/63072dbea27c7ff216f7e895b1d41a227e75f61b))
+
+### Documentation
+* reflect new changes ([`1e92cdf`](https://github.com/MicaelJarniac/BuildURL/commit/1e92cdfed04d67ea691b166e75c31189aafdb74a))
+
 ## v3.0.0 (2021-04-02)
 ### Feature
 * support trailing slash ([`d34ac1d`](https://github.com/MicaelJarniac/BuildURL/commit/d34ac1d5d4104c5026dbb7501c9c0091cf81799a))
