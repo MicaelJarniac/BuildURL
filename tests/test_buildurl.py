@@ -75,6 +75,10 @@ def test_path():
     url = BuildURL("https://example.com/folder/")
     assert url.get == "https://example.com/folder/"
 
+    url = BuildURL("https://example.com")
+    url.add_path("one", "two", ["three", "four", "five", "six"], "seven//eight")
+    assert url.get == "https://example.com/one/two/three/four/five/six/seven/eight"
+
 
 def test_query():
     url = BuildURL("https://example.com")
@@ -107,6 +111,10 @@ def test_query():
     assert url.get == "https://example.com?again=and-again"
     url.query = None
     assert url.get == "https://example.com"
+
+    url = BuildURL("https://example.com")
+    url.add_query("a=b&c=d", {"e": "f", "g": "h"}, i="j", k="l")
+    assert url.get == "https://example.com?a=b&c=d&e=f&g=h&i=j&k=l"
 
 
 def test_copy():

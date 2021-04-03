@@ -57,7 +57,7 @@ class BuildURL:
         """
         return deepcopy(self)
 
-    def add_path(self, path: Path) -> "BuildURL":
+    def add_path(self, *args: Path) -> "BuildURL":
         """Add to the path.
 
         Args:
@@ -80,12 +80,16 @@ class BuildURL:
         """
 
         path_list = list()
-        if isinstance(path, str):
-            path_list = path.split("/")
-        elif isinstance(path, list):
-            path_list = path
-        else:
-            raise AttributeError
+        for path in args:
+            if isinstance(path, str):
+                path_list.extend(path.split("/"))
+            elif isinstance(path, list):
+                # TODO Convert some types to `str`, like `int` and `float`
+                if not all((isinstance(p, str) for p in path)):
+                    raise AttributeError
+                path_list.extend(path)
+            else:
+                raise AttributeError
 
         if len(path_list):
             self.trailing_slash = path_list[-1] == ""
@@ -95,7 +99,7 @@ class BuildURL:
 
         return self
 
-    def add_query(self, query: Query) -> "BuildURL":
+    def add_query(self, *args: Query, **kwargs) -> "BuildURL":
         """Add a query argument.
 
         Args:
@@ -116,12 +120,16 @@ class BuildURL:
         """
 
         query_dict = dict()
-        if isinstance(query, str):
-            query_dict = parse_qs(query)
-        elif isinstance(query, dict):
-            query_dict = query
-        else:
-            raise AttributeError
+        for query in args:
+            if isinstance(query, str):
+                query_dict.update(parse_qs(query))
+            elif isinstance(query, dict):
+                query_dict.update(query)
+            else:
+                raise AttributeError
+
+        if kwargs:
+            query_dict.update(kwargs)
 
         self.query_dict.update(query_dict)
 
