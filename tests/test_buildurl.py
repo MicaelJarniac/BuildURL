@@ -117,6 +117,31 @@ def test_query():
     assert url.get == "https://example.com?a=b&c=d&e=f&g=h&i=j&k=l"
 
 
+def test_trailing_slash():
+    url = BuildURL("https://example.com/")
+    assert url.get == "https://example.com/"
+
+    url = BuildURL("https://example.com/test", force_trailing_slash=True)
+    assert url.get == "https://example.com/test/"
+
+    url = BuildURL("https://example.com")
+    url /= "test/"
+    assert url.get == "https://example.com/test/"
+
+    url = BuildURL("https://example.com")
+    url.add_path("test").set_force_trailing_slash().add_query(a="b")
+    assert url.get == "https://example.com/test/?a=b"
+    url.set_force_trailing_slash(False)
+    assert url.get == "https://example.com/test?a=b"
+    url.trailing_slash = True
+    assert url.get == "https://example.com/test/?a=b"
+    url /= "path"
+    assert url.get == "https://example.com/test/path?a=b"
+    url.force_trailing_slash = True
+    url /= "more"
+    assert url.get == "https://example.com/test/path/more/?a=b"
+
+
 def test_copy():
     url = BuildURL("https://example.com")
     url_copy = url.copy()

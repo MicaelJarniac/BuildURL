@@ -21,7 +21,7 @@ class BuildURL:
         >>> url = BuildURL("https://pypi.org")
     """
 
-    def __init__(self, base: str = ""):
+    def __init__(self, base: str = "", force_trailing_slash: bool = False):
         purl = urlsplit(base)
 
         # scheme://netloc/path;params?query#fragment
@@ -34,6 +34,7 @@ class BuildURL:
         self.fragment: str = purl.fragment
 
         self.trailing_slash: bool = False
+        self.force_trailing_slash: bool = force_trailing_slash
 
         path_str: str = purl.path
         if path_str:
@@ -56,6 +57,10 @@ class BuildURL:
             https://example.com
         """
         return deepcopy(self)
+
+    def set_force_trailing_slash(self, enabled: bool = True) -> "BuildURL":
+        self.force_trailing_slash = enabled
+        return self
 
     def add_path(self, *args: Path) -> "BuildURL":
         """Add to the path.
@@ -139,7 +144,7 @@ class BuildURL:
     def path(self) -> str:
         """Path string."""
         path = "/".join(self._path_list)
-        if self.trailing_slash:
+        if self.trailing_slash or self.force_trailing_slash:
             path += "/"
         return path
 
