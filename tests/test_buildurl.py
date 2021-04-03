@@ -49,6 +49,8 @@ def test_path():
         url /= 0.1
     with raises(AttributeError):
         url /= True
+    with raises(AttributeError):
+        url.add_path(["a", "b", 1, 2])
 
     assert url.get == "https://example.com/test/more/paths/added"
 
