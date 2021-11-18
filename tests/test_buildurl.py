@@ -179,5 +179,5 @@ def test_chaining():
     url = BuildURL("https://example.com")
     url.add_path("one").add_path("two")
     assert url.get == "https://example.com/one/two"
-    url.add_query({"test": "more"}).add_path("three").add_query("testing=alot")
-    assert url.get == "https://example.com/one/two/three?test=more&testing=alot"
+    url.add_query({"test": "more"}).add_path("three").add_query("testing=a_lot")
+    assert url.get == "https://example.com/one/two/three?test=more&testing=a_lot"
