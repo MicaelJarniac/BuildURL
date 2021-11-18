@@ -2,6 +2,12 @@
 
 <!--next-version-placeholder-->
 
+## v4.0.1 (2021-11-18)
+### Fix
+* docstrings ([`3029762`](https://github.com/MicaelJarniac/BuildURL/commit/30297628ab0f3ba32467b7de52199127129fe3da))
+* wrong pre-commit hook property name ([`4e13d69`](https://github.com/MicaelJarniac/BuildURL/commit/4e13d69d57bd2b7a3e740fe9e8c3ca94ddeb394d))
+* py.typed ([`b0bb774`](https://github.com/MicaelJarniac/BuildURL/commit/b0bb774eeb4e945dd4822fe97b598095dbb32901))
+
 ## v4.0.0 (2021-04-03)
 ### Feature
 * option to force trailing slash ([`299f3b3`](https://github.com/MicaelJarniac/BuildURL/commit/299f3b39ad7a75c544bae26b14013a70a0d5e1cd))
