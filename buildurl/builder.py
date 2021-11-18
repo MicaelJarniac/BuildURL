@@ -1,3 +1,5 @@
+"""BuildURL's core."""
+
 from copy import deepcopy
 from typing import Any, Dict, List, Optional, Tuple, Union
 from urllib.parse import parse_qs, urlencode, urlsplit, urlunsplit
@@ -31,6 +33,7 @@ class BuildURL:
     """
 
     def __init__(self, base: str = "", force_trailing_slash: bool = False):
+        """Initialize a new instance of BuildURL."""
         purl = urlsplit(base)
 
         # scheme://netloc/path;params?query#fragment
@@ -68,7 +71,7 @@ class BuildURL:
         return deepcopy(self)
 
     def set_force_trailing_slash(self, enabled: bool = True) -> "BuildURL":
-        """Sets the `force_trailing_slash` attribute
+        """Set the `force_trailing_slash` attribute.
 
         Args:
             enabled:
@@ -115,7 +118,6 @@ class BuildURL:
             >>> print(url.get)
             https://example.com/never/stopping/to/play/with/paths
         """
-
         path_list = list()
         for path in args:
             if isinstance(path, str):
@@ -166,7 +168,6 @@ class BuildURL:
             >>> print(url.get)
             https://example.com?key=value&another=query&more=stuff&a=b&c=d&e=f
         """
-
         query_dict = dict()
         for query in args:
             if isinstance(query, str):
@@ -250,7 +251,6 @@ class BuildURL:
             >>> print(url.get)
             https://example.com/test/more/paths/again/and/again/
         """
-
         self.add_path(path)
         return self
 
@@ -274,7 +274,6 @@ class BuildURL:
             >>> print(new_url.get)
             https://example.com/testing
         """
-
         out = self.copy()
         out /= path
         return out
@@ -300,7 +299,6 @@ class BuildURL:
             >>> print(url.get)
             https://example.com?key=value&another=query&more=stuff
         """
-
         self.add_query(query)
         return self
 
@@ -324,7 +322,6 @@ class BuildURL:
             >>> print(new_url.get)
             https://example.com?test=it
         """
-
         out = self.copy()
         out += query
         return out
@@ -340,7 +337,6 @@ class BuildURL:
             >>> print(repr(url))
             BuildURL(base='https://example.com/test?now=true', force_trailing_slash=False)
         """
-
         return f"{self.__class__.__name__}(base='{self.get}', force_trailing_slash={self.force_trailing_slash})"
 
     def __str__(self) -> str:
@@ -359,7 +355,6 @@ class BuildURL:
             >>> print(url)
             https://example.com/test
         """
-
         return self.get
 
     def __len__(self) -> int:
